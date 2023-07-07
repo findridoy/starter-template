@@ -2,7 +2,7 @@ package routes
 
 import (
 	"os"
-	"st/cmd/api_server/middleware"
+	"st/cmd/api_server/middlewares"
 	"time"
 
 	"github.com/gofiber/fiber/v2"
