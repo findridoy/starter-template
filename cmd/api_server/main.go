@@ -3,6 +3,7 @@ package main
 import (
 	"st/cmd/api_server/routes"
 	"st/pkg"
+	"st/pkg/config"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
@@ -13,6 +14,7 @@ func main() {
 		panic(err)
 	}
 
+	config.InitAuthConfig()
 	app := fiber.New()
 	router := app.Use(cors.New(cors.Config{
 		AllowOrigins: "http://localhost:5173",
