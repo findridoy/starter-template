@@ -1,10 +1,31 @@
 import { Layout, Menu } from "antd";
-import { Form, Outlet, redirect } from "react-router-dom";
+import { Form, Outlet, redirect, useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
 import { ofetch } from "@/lib/ofetch";
+import { useState } from "react";
 
 export default function MainLayout() {
+  const navigate = useNavigate();
   const { Header, Content, Footer, Sider } = Layout;
+
+  const [menuItems, setMenuItems] = useState([
+    {
+      label: "Dashboard",
+      key: "/dashboard",
+    },
+    {
+      label: "Users",
+      key: "/users",
+    }
+  ])
+
+
+  const handleMenuClick = ({key}) => {
+    // console.log(key);
+    navigate(key)
+  }
+
+
   return (
     <>
       <Layout hasSider>
@@ -13,7 +34,7 @@ export default function MainLayout() {
           theme="light"
         >
           <div className="relative h-full w-full">
-            <Menu items={[]} />
+            <Menu items={menuItems} onClick={handleMenuClick}/>
 
             <div className="w-full">
               <Form method="POST">
