@@ -15,6 +15,9 @@ func main() {
 	}
 
 	config.InitAuthConfig()
+
+	pkg.InitEnt()
+
 	app := fiber.New()
 	router := app.Use(cors.New(cors.Config{
 		AllowOrigins: "http://localhost:5173",
