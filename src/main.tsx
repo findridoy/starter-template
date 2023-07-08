@@ -6,6 +6,8 @@ import Login, { LoginRouteAction } from './routes/login.tsx'
 import { isLoggedIn } from './lib/auth.ts'
 import Layout, { LayoutRouteAction } from './components/Layout.tsx'
 import Dashboard from './routes/dashboard.tsx'
+import UserIndex from './routes/users/index.tsx'
+import { userList } from './repository/user.ts'
 
 const router = createBrowserRouter([
   {
@@ -26,6 +28,16 @@ const router = createBrowserRouter([
             return redirect("/login")
           }
           return null
+        },
+      },
+      {
+        path: "/users",
+        element: <UserIndex/>,
+        loader: async () => {
+          if (!await isLoggedIn()) {
+            return redirect("/login")
+          }
+          return await userList()
         },
       },
     ]
